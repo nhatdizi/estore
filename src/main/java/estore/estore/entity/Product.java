@@ -28,8 +28,8 @@ public class Product {
     @Column(name = "stock")
     private int stock;
 
-    @Column(name = "describe")
-    private String describe;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -95,12 +95,12 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Category getCategory() {

@@ -9,14 +9,19 @@ import java.util.List;
 @Table(name = "cart")
 public class Cart {
 
+    @EmbeddedId
+    private CartKey id;
+
     @Column(name = "stock")
     private int stock;
 
     @ManyToOne
+    @MapsId("productId")
     @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
+    @MapsId("accountId")
     @JoinColumn(name = "account_id")
     private Account account;
 
