@@ -132,9 +132,10 @@
                             <nav>                                                                                                
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">All</a>
-                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">New</a>
-                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Featured</a>
-                                    <a class="nav-item nav-link" id="nav-last-tab" data-toggle="tab" href="#nav-last" role="tab" aria-controls="nav-contact" aria-selected="false">Offer</a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">T-shirt</a>
+                                    <a class="nav-item nav-link" id="nav-last-tab1" data-toggle="tab" href="#nav-last" role="tab" aria-controls="nav-contact" aria-selected="false">Sweater</a>
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Trousers</a>
+                                    <a class="nav-item nav-link" id="nav-last-tab" data-toggle="tab" href="#nav-last" role="tab" aria-controls="nav-contact" aria-selected="false">Shorts</a>
                                 </div>
                             </nav>
                             <!--End Nav Button  -->
@@ -152,7 +153,7 @@
                                     <div class="product-img">
                                         <img th:src="@{/img/categori/{image}(image=${product.image})}" alt="">
                                         <div class="new-product">
-                                            <span th:if="${product.category.id == 1}">New</span>
+                                            <span th:if="${product.category.id == 2}">New</span>
                                         </div>
                                     </div>
                                     <div class="product-caption">
@@ -163,7 +164,7 @@
                                             <i class="far fa-star low-star"></i>
                                             <i class="far fa-star low-star"></i>
                                         </div>
-<!--                                        <h4><a href="#">[[${product.productName}]]</a></h4>-->
+                                        <p>[[${product.category.name}]]</p>
                                         <h4><a th:href="@{/single-product/{id}(id=${product.id})}" th:text="${product.productName}"></a></h4>
                                         <div class="price">
                                             <ul>

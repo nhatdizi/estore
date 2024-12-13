@@ -90,6 +90,12 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("pageTitle", "Register");
+        return "register";
+    }
+
     @GetMapping("/product-list")
     public String productList(Model model){
         model.addAttribute("pageTitle", "Product List");
