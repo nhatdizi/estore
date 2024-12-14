@@ -4386,16 +4386,25 @@ input:focus {
 
 /* line 30, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_latest_products.scss */
 .latest-product-area .single-product .product-img .new-product {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   position: absolute;
   top: 25px;
-  left: 23px;
 }
 
 /* line 34, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_latest_products.scss */
 .latest-product-area .single-product .product-img .new-product span {
-  background: #ff003c;
   padding: 3px 16px;
   border-radius: 30px;
+
+}
+.latest-product-area .single-product .product-img .new-product span i{
+  cursor: pointer;
+  color: #ff003c;
+}
+.latest-product-area .single-product .product-img .new-product .new{
+  background: #ff003c;
   color: #fff;
 }
 
@@ -13024,6 +13033,13 @@ input:focus {
   .breadcrumb_part .breadcrumb_iner h2 {
     font-size: 30px;
   }
+}
+
+.custom-btn {
+    font-size: 0.75rem; /* Giảm kích thước font chữ */
+    padding: 0.5rem 0.5rem; /* Giảm padding của nút */
+
+    /* Đảm bảo chiều cao tự động để vừa với kích thước */
 }
 
 /*# sourceMappingURL=style.css.map */

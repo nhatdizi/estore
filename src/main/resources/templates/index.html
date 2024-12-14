@@ -153,7 +153,12 @@
                                     <div class="product-img">
                                         <img th:src="@{/img/categori/{image}(image=${product.image})}" alt="">
                                         <div class="new-product">
-                                            <span th:if="${product.category.id == 2}">New</span>
+                                            <form th:action="@{/add-to-favorite/{id}(id=${product.id})}" method="post">
+                                                <span>
+                                                    <i class="fas fa-heart" onclick="this.closest('form').submit();"></i>
+                                                </span>
+                                            </form>
+                                            <span class="new" th:if="${product.category.id == 2}">New</span>
                                         </div>
                                     </div>
                                     <div class="product-caption">

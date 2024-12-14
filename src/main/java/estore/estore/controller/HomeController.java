@@ -1,11 +1,15 @@
 package estore.estore.controller;
 
+import estore.estore.dao.CartDAO;
 import estore.estore.dao.ProductDAO;
+import estore.estore.model.Account;
 import estore.estore.model.Product;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -22,7 +26,8 @@ public class HomeController {
     public String home(Model model){
         model.addAttribute("pageTitle", "Home");
         List<Product> productList = productDAO.getAll();
-        System.out.println("productList: " + productList);
+//        System.out.println("productList: " + productList);
+        System.out.println("load thành công");
         model.addAttribute("productList", productList);
         return "index";
     }
@@ -34,18 +39,6 @@ public class HomeController {
         System.out.println("productList: " + productList);
         model.addAttribute("productList", productList);
         return "Catagori";
-    }
-
-    @GetMapping("/blog")
-    public String blog(Model model){
-        model.addAttribute("pageTitle", "Blog");
-        return "blog";
-    }
-
-    @GetMapping("/single-blog")
-    public String singleBlog(Model model){
-        model.addAttribute("pageTitle", "Blog Details");
-        return "single-blog";
     }
 
     @GetMapping("/contact")
@@ -60,49 +53,10 @@ public class HomeController {
         return "about";
     }
 
-    @GetMapping("/element")
-    public String element(Model model){
-        model.addAttribute("pageTitle", "Element");
-        return "elements";
-    }
-
-    @GetMapping("/confirmation")
-    public String confirmation(Model model){
-        model.addAttribute("pageTitle", "Confirmation");
-        return "confirmation";
-    }
-
-    @GetMapping("/cart")
-    public String cart(Model model){
-        model.addAttribute("pageTitle", "Cart");
-        return "cart";
-    }
-
     @GetMapping("/checkout")
     public String checkout(Model model){
         model.addAttribute("pageTitle", "Checkout");
         return "checkout";
-    }
-
-    @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("pageTitle", "Login");
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String register(Model model){
-        model.addAttribute("pageTitle", "Register");
-        return "register";
-    }
-
-    @GetMapping("/product-list")
-    public String productList(Model model){
-        model.addAttribute("pageTitle", "Product List");
-        List<Product> productList = productDAO.getAll();
-        System.out.println("productList: " + productList);
-        model.addAttribute("productList", productList);
-        return "product_list";
     }
 
     @GetMapping("/single-product")
@@ -119,5 +73,14 @@ public class HomeController {
         Product product = productDAO.getById(id);
         model.addAttribute("product", product);
         return "single-product";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("Search") String search, Model model){
+        model.addAttribute("pageTitle", "Catagori");
+        List<Product> productList = productDAO.getByName(search);
+        System.out.println("productList: " + productList);
+        model.addAttribute("productList", productList);
+        return "Catagori";
     }
 }
