@@ -45,16 +45,6 @@ create table favorite(
     constraint FK_favorite_account foreign key(accountId) references account(id)
 );
 
-create table comment(
-	id int auto_increment primary key,
-    comment varchar(255),
-    rate int,
-    productId int,
-    accountId int,
-    constraint FK_comment_product foreign key(productId) references product(id),
-    constraint FK_comment_account foreign key(accountId) references account(id)
-);
-
 create table cart(
 	stock int,
     productId int,
@@ -64,30 +54,6 @@ create table cart(
     constraint FK_cart_account foreign key(accountId) references account(id)
 );
 
-create table shipping(
-	id int auto_increment primary key,
-    shipping_method varchar(255)
-);
-
-create table orders(
-	id int auto_increment primary key,
-    status varchar(255),
-    create_at date,
-    shippingId int,
-    accountId int,
-	constraint FK_shipping foreign key(shippingId) references shipping(id),
-    constraint FK_account foreign key(accountId) references account(id)
-);
-
-create table order_items(
-	quantity int,
-    productId int,
-    orderId int,
-    primary key(productId, orderId),
-    constraint FK_order_items_product foreign key(productId) references product(id),
-    constraint FK_order_items_account foreign key(orderId) references orders(id)
-);
-
 show tables;
 
 insert into category values
@@ -95,16 +61,48 @@ insert into category values
 (2, 'Featured'),
 (3, 'Offer');
 
-
 insert into product(id, image, product_name, cost_price, original_price, stock, description, categoryId) values
 (1, 'product1.png', 'Green Dress with details', 40.00, 60.00, 100, 'Cervical pillow for airplane car office nap pillow', 1),
-(2, 'product2.png', 'Green Dress with details', 40.00, 60.00, 100, 'Geometric striped flower home classy decor', 1),
-(3, 'product3.png', 'Green Dress with details', 40.00, 60.00, 100, 'Foam filling cotton slow rebound pillows', 2),
-(4, 'product4.png', 'Green Dress with details', 40.00, 60.00, 100, 'Sleeping orthopedic sciatica Back Hip Joint Pain relief', 2),
-(5, 'product5.png', 'Green Dress with details', 40.00, 60.00, 100, 'Geometric striped flower home classy decor', 3),
-(6, 'product6.png', 'Green Dress with details', 40.00, 60.00, 100, 'Foam filling cotton slow rebound pillows', 3);
+(2, 'product2.png', 'Green Dress with details', 30.00, 70.00, 100, 'Geometric striped flower home classy decor', 1),
+(3, 'product3.png', 'Green Dress with details', 50.00, 80.00, 100, 'Foam filling cotton slow rebound pillows', 2),
+(4, 'product4.png', 'Green Dress with details', 70.00, 65.00, 100, 'Sleeping orthopedic sciatica Back Hip Joint Pain relief', 2),
+(5, 'product5.png', 'Green Dress with details', 20.00, 40.00, 100, 'Geometric striped flower home classy decor', 3),
+(6, 'product6.png', 'Green Dress with details', 80.00, 90.00, 100, 'Foam filling cotton slow rebound pillows', 3);
 
+insert into role(id, position) values
+(1, 'admin'),
+(2, 'user');
+
+insert into account(id, user_name, password, email, roleId) values
+(1, 'nhat', '123456', 'nhat@gmail.com', 1),
+(2, 'the anh', '123456', 'theanh@gmail.com', 2),
+(3, 'quang', '123456', 'quang@gmail.com', 2);
+ 
 select * from category;
 select * from product;
-    
+select * from role;
+select * from account;
+select * from cart where accountId = 3;
+delete from cart where accountId = 3;
+
+insert into cart(productId, accountId, stock) value (2, 2, 3);
+
+select * from cart;
+delete from cart where productId = 2 and accountId = 3;
+update cart
+set stock = 6 where productId = 2 and accountId = 2;
+
+SELECT a.id, a.user_name, a.password, a.roleId, r.position FROM account a JOIN role r ON a.roleId = r.id where a.user_name = "quang";
+select p.image, p.product_name, p.cost_price, c.stock from product p inner join cart c 
+on p.id = c.productId where c.accountId = 3; 
+
+insert into account(user_name, password, email, roleId) value ('chuyen', '12345678', 'chuyen@gmail.com', 2);
+
+select * from product where product_name like '%Green%';
+
+select p.image, p.product_name, p.cost_price, c.name from product p inner join favorite f 
+on p.id = f.productId
+inner join category c on p.categoryId = c.id where f.accountId = 3; 
+
+select * from product order by cost_price desc;
 
