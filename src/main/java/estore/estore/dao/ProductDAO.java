@@ -101,4 +101,33 @@ public class ProductDAO{
            return null;
         }
     }
+
+    public List<Product> sortByCostPrice(String type){
+        String sql = "select * from product order by cost_price " + type;
+
+        try {
+            List<Product> productList = jdbcTemplate.query(sql, new RowMapper<Product>() {
+                @Override
+                public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    Product product = new Product();
+                    product.setId(rs.getInt("id"));
+                    product.setImage(rs.getString("image"));
+                    product.setProductName(rs.getString("product_name"));
+                    product.setCostPrice(rs.getDouble("cost_price"));
+                    product.setOriginalPrice(rs.getDouble("original_price"));
+                    product.setStock(rs.getInt("stock"));
+                    product.setDescription(rs.getString("description"));
+
+                    //các dữ liệu trong ô getString là tên cột trong mysql
+                    int categoryId = rs.getInt("categoryId");
+                    Category category = categoryDAO.getById(categoryId);
+                    product.setCategory(category);
+                    return product;
+                }
+            });
+            return productList;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class AccountDao implements BaseDAO<Account> {
+public class AccountDao{
 
     private JdbcTemplate jdbcTemplate;
 
@@ -17,17 +17,6 @@ public class AccountDao implements BaseDAO<Account> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public List<Account> getAll() {
-        return List.of();
-    }
-
-    @Override
-    public Account getById(int id) {
-        return null;
-    }
-
-    @Override
     public Account getByName(String name) {
         String sql = "SELECT a.id, a.user_name, a.password, a.roleId, r.position FROM " +
                 "account a JOIN role r ON a.roleId = r.id where a.user_name = ?";
@@ -49,7 +38,6 @@ public class AccountDao implements BaseDAO<Account> {
         }
     }
 
-    @Override
     public int add(Account account) {
         Account account1 = getByName(account.getUsername());
         if (account1 != null){

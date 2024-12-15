@@ -23,7 +23,7 @@ public class CartController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @PostMapping("/add-to-cart/{id}")
+    @PostMapping("/cart/add/{id}")
     public String addToCart(@PathVariable("id") int productId,
                             @RequestParam("stock") int stock,
                             HttpSession session){
@@ -64,5 +64,20 @@ public class CartController {
         model.addAttribute("productList", productList);
         model.addAttribute("subtotal", subtotal);
         return "cart";
+    }
+
+    @PostMapping("/cart/remove/{id}")
+    public String removeProduct(@PathVariable("id") int productId,
+                            HttpSession session){
+        Account account = (Account) session.getAttribute("user");
+
+        if(account == null){
+            return "redirect:/login";
+        }
+        CartDAO cartDAO = new CartDAO(jdbcTemplate);
+
+        int result =  cartDAO.removeProduct(productId, account.getId());
+
+        return "redirect:/cart";
     }
 }

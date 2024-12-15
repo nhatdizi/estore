@@ -40,6 +40,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Total</th>
+                <th scope="col" class="text-center align-middle">Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -68,7 +69,13 @@
 <!--                  <h5>$[[${product.stock} * ${product.costPrice}]]</h5>-->
                   <h5 th:text="'$' + ${product.stock * product.costPrice}"></h5>
                 </td>
+                <td class="text-center align-middle">
+                    <form method="post" th:action="@{/cart/remove/{id}(id=${product.id})}">
+                        <i class="fas fa-trash-alt" style="cursor:pointer" onclick="this.closest('form').submit();"></i>
+                    </form>
+                </td>
               </tr>
+
               <tr class="bottom_button">
                 <td>
                   <a class="btn_1" th:href="@{/}">Update Cart</a>

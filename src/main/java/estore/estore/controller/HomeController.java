@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -36,6 +37,17 @@ public class HomeController {
     public String catagori(Model model){
         model.addAttribute("pageTitle", "Catagori");
         List<Product> productList = productDAO.getAll();
+        model.addAttribute("productList", productList);
+        return "Catagori";
+    }
+
+    @GetMapping("/categori/sort")
+    public String sortProduct(@RequestParam("select") String sortProduct,
+                              Model model){
+        model.addAttribute("pageTitle", "Catagori");
+
+        List<Product> productList = productDAO.sortByCostPrice(sortProduct);
+        System.out.println("sortProduct: " + sortProduct);
         System.out.println("productList: " + productList);
         model.addAttribute("productList", productList);
         return "Catagori";

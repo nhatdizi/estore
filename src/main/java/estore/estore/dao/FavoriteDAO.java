@@ -27,13 +27,14 @@ public class FavoriteDAO {
     public List<Product> getAll(int accountId){
 //        String sql = "select p.image, p.product_name, p.cost_price from product p inner join cart c " +
 //                "on p.id = c.productId where c.accountId = ?";
-        String sql = "select p.image, p.product_name, p.cost_price, c.name from product p inner join favorite f " +
+        String sql = "select p.id, p.image, p.product_name, p.cost_price, c.name from product p inner join favorite f " +
                         "on p.id = f.productId " +
                         "inner join category c on p.categoryId = c.id where f.accountId = ?";
         List<Product> productList = jdbcTemplate.query(sql, new Object[]{accountId}, new RowMapper<Product>() {
             @Override
             public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Product product = new Product();
+                product.setId(rs.getInt("id"));
                 product.setImage(rs.getString("image"));
                 product.setProductName(rs.getString("product_name"));
                 product.setCostPrice(rs.getDouble("cost_price"));
