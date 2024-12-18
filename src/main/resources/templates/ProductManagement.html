@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <th:block th:insert="~{headerAdmin :: link}"></th:block>
+  <title>Admin</title>
+</head>
+<body>
+  <div th:insert="~{headerAdmin :: site-header}"></div>
+
+  <section class="dashboard">
+    <div class="employee-management">
+      <h2 class="employee-management__title">Thông tin chi tiết</h2>
+
+      <div class="employee-management__action">
+        <div class="employee-management__button">
+          <a th:href="@{/admin/add-product}">
+            <button class="employee-management__addBtn">Thêm sản phẩm mới</button>
+          </a>
+        </div>
+
+        <form action="">
+          <div class="employee-management__search-box">
+            <input type="search" class="employee-management__search" placeholder="Tìm kiếm...">
+            <i class='bx bx-search'></i>
+          </div>
+        </form>
+      </div>
+
+      <div class="employee-management__wrapper">
+        <table class="employee-management__table">
+          <thead class="employee-management__table-head">
+          <tr class="employee-management__table-row">
+            <th class="employee-management__table-header">STT</th>
+            <th class="employee-management__table-header">Ảnh</th>
+            <th class="employee-management__table-header">Tên sản phẩm</th>
+            <th class="employee-management__table-header">Giá bán</th>
+            <th class="employee-management__table-header">Giá gốc</th>
+            <th class="employee-management__table-header">Số lượng</th>
+            <th class="employee-management__table-header">Chi tiết</th>
+            <th class="employee-management__table-header">Danh mục</th>
+            <th class="department-management__table-header center">Sửa</th>
+            <th class="department-management__table-header center">Xoá</th>
+          </tr>
+          </thead>
+
+          <tbody class="employee-management__table-body">
+            <tr class="employee-management__table-row" th:each="product, productStat : ${productList}">
+              <td class="employee-management__table-cell" th:text="${productStat.index + 1}"></td>
+              <td class="employee-management__table-cell employee-management__table-cell--image">
+                <img th:src="@{/img/categori/{image}(image=${product.image})}" alt="">
+              </td>
+              <td class="employee-management__table-cell" th:text="${product.productName}"></td>
+              <td class="employee-management__table-cell" th:text="${'$' + product.costPrice}"></td>
+              <td class="employee-management__table-cell" th:text="${'$' + product.originalPrice}"></td>
+              <td class="employee-management__table-cell" th:text="${product.stock}"></td>
+              <td class="employee-management__table-cell" th:text="${product.description}"></td>
+              <td class="employee-management__table-cell" th:text="${product.category.name}"></td>
+              <td class="employee-management__table-cell center edit">
+                <a th:href="@{/admin/edit-product/{id}(id=${product.id})}">
+                  <i class='bx bx-edit-alt'></i>
+                </a>
+              </td>
+              <td class="employee-management__table-cell center delete">
+                <form th:action="@{/admin/delete-product/{id}(id=${product.id})}" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xoá không?');">
+                  <button type="submit" class="delete-button">
+                    <i class='bx bx-trash'></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- pagination -->
+<!--      <form action="">-->
+<!--        <div class="employee-management__pagination">-->
+<!--          <a href="#" class="employee-management__pagination-link employee-management__pagination-link&#45;&#45;active">1</a>-->
+<!--          <a href="#" class="employee-management__pagination-link">2</a>-->
+<!--          <a href="#" class="employee-management__pagination-link">3</a>-->
+<!--          <a href="#" class="employee-management__pagination-link">4</a>-->
+<!--        </div>-->
+<!--      </form>-->
+    </div>
+  </section>
+
+  <script src="/adminjs/main.js"></script>
+<script src="./js/employee.js"></script>
+</body>
+</html>

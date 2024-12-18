@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <th:block th:insert="~{headerAdmin :: link}"></th:block>
+  <title>Admin</title>
+</head>
+<body>
+  <div th:insert="~{headerAdmin :: site-header}"></div>
+
+  <section class="dashboard">
+    <div class="edit-department">
+      <h2 class="edit-department__title">Sửa danh mục</h2>
+      <form th:action="@{/admin/category/edit/{id}(id=${category.id})}" method="post" class="edit-department__form">
+        <div class="form-group">
+<!--          <input type="hidden" name="id" th:value="${category.id}">-->
+          <label for="name" class="form-group__label">Tên danh mục</label>
+          <input class="form-group__input" type="text" name="name" id="name"
+                 placeholder="Nhập tên danh mục" required>
+        </div>
+
+        <input type="submit" class="form-group__submit" value="Sửa">
+      </form>
+    </div>
+  </section>
+
+  <script src="/adminjs/main.js"></script>
+</body>
+</html>

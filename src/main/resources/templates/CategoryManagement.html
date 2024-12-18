@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <th:block th:insert="~{headerAdmin :: link}"></th:block>
+  <title>Admin</title>
+
+  <script>
+    function showAlert(message) {
+        alert(message);
+    }
+  </script>
+</head>
+<body>
+  <div th:insert="~{headerAdmin :: site-header}"></div>
+
+  <section class="dashboard">
+    <div class="department-management">
+
+      <h2 class="department-management__title">
+        Phòng ban
+      </h2>
+
+      <div class="department-management__wrapper">
+        <div class="department-management__action">
+          <div class="department-management__button">
+            <a th:href="@{/admin/add-category}">
+              <button class="department-management__addBtn">Thêm danh mục</button>
+            </a>
+          </div>
+
+          <form action="">
+            <div class="department-management__search-box">
+              <input type="search" class="department-management__search" placeholder="Tìm kiếm...">
+              <i class='bx bx-search'></i>
+            </div>
+          </form>
+        </div>
+
+        <div th:if="${msg}" class="alert alert-warning" th:text="${msg}"></div>
+
+        <table class="department-management__table">
+          <thead class="department-management__table-head">
+          <tr class="department-management__table-row">
+            <th class="department-management__table-header">STT</th>
+            <th class="department-management__table-header">Mã danh mục</th>
+            <th class="department-management__table-header">Tên danh mục</th>
+            <th class="department-management__table-header center">Sửa</th>
+            <th class="department-management__table-header center">Xoá</th>
+          </tr>
+          </thead>
+
+          <tbody class="payroll-management__body">
+            <tr class="payroll-management__table-row" th:each="category, categoryStat : ${categoryList}">
+              <td class="department-management__table-cell" th:text="${categoryStat.index + 1}"></td>
+              <td class="department-management__table-cell" th:text="${category.id}"></td>
+              <td class="department-management__table-cell" th:text="${category.name}"></td>
+              <td class="department-management__table-cell center edit">
+                <a th:href="@{/admin/edit-category/{id}(id=${category.id})}">
+                  <i class='bx bx-edit-alt' ></i>
+                </a>
+              </td>
+              <td class="department-management__table-cell center delete">
+                <form th:action="@{/admin/category/delete/{id}(id=${category.id})}" method="post">
+                  <button type="submit" class="delete-button">
+                    <i class='bx bx-trash'></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- pagination -->
+<!--      <form action="">-->
+<!--        <div class="department-management__pagination">-->
+<!--          <a href="#" class="department-management__pagination-link department-management__pagination-link&#45;&#45;active">1</a>-->
+<!--          <a href="#" class="department-management__pagination-link">2</a>-->
+<!--          <a href="#" class="department-management__pagination-link">3</a>-->
+<!--          <a href="#" class="department-management__pagination-link">4</a>-->
+<!--        </div>-->
+<!--      </form>-->
+    </div>
+  </section>
+
+<script src="/adminjs/main.js"></script>
+<script src="/adminjs/department.js"></script>
+
+</body>
+</html>

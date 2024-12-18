@@ -95,4 +95,5 @@ public class HomeController {
         model.addAttribute("productList", productList);
         return "Catagori";
     }
+
 }

@@ -37,12 +37,13 @@ public class LoginController {
             // Nếu đăng nhập thành công, lưu thông tin người dùng vào session
             session.setAttribute("user", account);
             // Điều hướng đến trang chủ hoặc trang khác tùy theo vai trò người dùng
-            if (account.getRole().getPosition().equals("admin")) {
-                return "redirect:/admin"; // Trang dành cho quản trị viên
-            } else {
-                model.addAttribute("pageTitle", "Home");
-                return "redirect:/"; // Trang dành cho người dùng bình thường
-            }
+//            if (account.getRole().getPosition().equals("admin")) {
+//                return "redirect:/admin/category-management"; // Trang dành cho quản trị viên
+//            } else {
+//                model.addAttribute("pageTitle", "Home");
+//                return "redirect:/"; // Trang dành cho người dùng bình thường
+//            }
+            return "redirect:/";
         } else {
             model.addAttribute("error", "Invalid username or password");
             model.addAttribute("pageTitle", "Login");

@@ -2,7 +2,9 @@ package estore.estore;
 
 import estore.estore.dao.AccountDao;
 import estore.estore.dao.CartDAO;
+import estore.estore.dao.CategoryDAO;
 import estore.estore.model.Account;
+import estore.estore.model.Category;
 import estore.estore.model.Product;
 import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.Test;
@@ -19,11 +21,14 @@ class EstoreApplicationTests {
 	private JdbcTemplate jdbcTemplate;
 
 	@Test
-	void contextLoads(HttpSession session) {
-		CartDAO cartDAO = new CartDAO(jdbcTemplate);
-		Account account = (Account) session.getAttribute("user");
-		List<Product> productList = cartDAO.getAll(account.getId());
-		System.out.println(productList);
+	void contextLoads() {
+		CategoryDAO categoryDAO = new CategoryDAO(jdbcTemplate);
+
+//		List<Category> categoryList = categoryDAO.getAll();
+//		System.out.println(categoryList);
+
+		Category category = categoryDAO.getById(1);
+		System.out.println(category);
 	}
 
 }

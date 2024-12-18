@@ -1,0 +1,58 @@
+/*--------------------- add employee and edit employee ---------------------*/
+.add-department,
+.edit-department{
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 8px;
+    height: 97%;
+}
+
+.add-department__title,
+.edit-department__title{
+    margin: 10px 0 40px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.form-group{
+    margin-bottom: 30px;
+}
+
+.form-group__label{
+    display: block;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.form-group__input{
+    margin-left: 50px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 91%;
+}
+
+.form-group__select{
+    width: 91%;
+    margin-left: 50px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.form-group__submit{
+    display: block;
+    margin: 40px auto 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, #f61d92, #1a445d);
+}
+
+.form-group__submit:hover{
+    cursor: pointer;
+}

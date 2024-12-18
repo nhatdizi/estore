@@ -1,0 +1,88 @@
+/*--------------------- add employee and edit employee ---------------------*/
+
+.add-employee,
+.edit-employee{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 7px 8px;
+    height: 97%;
+}
+
+.add-employee__title,
+.edit-employee__title{
+    margin: 20px 0 40px;
+    text-align: center;
+}
+
+.form-group{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-group__label{
+    width: 150px;
+    margin-left: 100px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.form-group__input{
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 56%;
+}
+
+.form-group__label--radio{
+    margin-left: 2px;
+    margin-right: 50px;
+}
+
+.form-group__label--radio:hover{
+    cursor: pointer;
+}
+
+.form-group.double{
+    justify-content: space-between;
+}
+
+.form-group__left,
+.form-group__right{
+    display: flex;
+    align-items: center;
+}
+
+.form-group__input.form-group__left--input{
+    margin-left: 58px;
+}
+
+.form-group__select{
+    width: 80%;
+    padding: 8px 10px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.form-group__select.form-group__right--input{
+    margin-left: 25px;
+    margin-right: 45px;
+}
+
+.form-group__submit{
+    display: block;
+    margin: 40px auto 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    background: linear-gradient(to right, #f61d92, #1a445d);
+}
+
+.form-group__submit:hover{
+    cursor: pointer;
+}

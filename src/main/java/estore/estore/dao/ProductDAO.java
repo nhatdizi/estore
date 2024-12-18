@@ -5,7 +5,12 @@ import estore.estore.model.Product;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -130,4 +135,53 @@ public class ProductDAO{
             return null;
         }
     }
+
+    public int deleteProduct(int id) {
+        String sql = "DELETE FROM product WHERE id = ?";
+        return jdbcTemplate.update(sql, id);
+    }
+
+    public int addProduct(Product product, MultipartFile imageFile) {
+        // Bước 1: Lưu ảnh vào thư mục (nếu có ảnh)
+        String imageName = null;
+        if (imageFile != null && !imageFile.isEmpty()) {
+            imageName = saveImage(imageFile);  // Hàm lưu ảnh vào thư mục
+        }
+
+        // Bước 2: Thêm sản phẩm vào cơ sở dữ liệu
+        String sql = "INSERT INTO product (product_name, image, cost_price, original_price, stock, description, categoryId) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        // Lấy id của category
+        int categoryId = product.getCategory().getId();
+
+        // Chạy câu lệnh insert
+        return jdbcTemplate.update(sql, product.getProductName(), imageName, product.getCostPrice(),
+                product.getOriginalPrice(), product.getStock(), product.getDescription(), categoryId);
+    }
+
+    // Hàm lưu ảnh vào thư mục
+    public String saveImage(MultipartFile imageFile) {
+        String fileName = imageFile.getOriginalFilename();
+        Path path = Paths.get("src/main/resources/static/img/categori/" + fileName);
+
+        // Đảm bảo thư mục tồn tại
+        try {
+            Files.createDirectories(path.getParent());  // Tạo thư mục nếu chưa tồn tại
+            Files.write(path, imageFile.getBytes());   // Lưu tệp hình ảnh vào thư mục static/img/category
+        } catch (IOException e) {
+            throw new RuntimeException("Không thể lưu tệp hình ảnh: " + e.getMessage());
+        }
+        return fileName;
+    }
+
+    public int updateProduct(Product product) {
+        String sql = "UPDATE product SET product_name = ?, image = ?, cost_price = ?, original_price = ?, stock = ?, description = ?, categoryId = ? WHERE id = ?";
+
+        return jdbcTemplate.update(sql, product.getProductName(), product.getImage(),
+                product.getCostPrice(), product.getOriginalPrice(), product.getStock(),
+                product.getDescription(), product.getCategory().getId(), product.getId());
+    }
+
+
 }

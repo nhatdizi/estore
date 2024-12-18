@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <th:block th:insert="~{headerAdmin :: link}"></th:block>
+  <title>Admin</title>
+</head>
+<body>
+<div th:insert="~{headerAdmin :: site-header}"></div>
+
+<section class="dashboard">
+  <!-- sửa thông tin sản phẩm -->
+  <div class="edit-employee">
+    <h1 class="edit-employee__title">Sửa thông tin sản phẩm</h1>
+    <form th:action="@{/admin/product/edit/{id}(id=${product.id})}" method="post" enctype="multipart/form-data" class="add-employee__form">
+
+      <div class="form-group">
+        <label for="name" class="form-group__label">Tên sản phẩm</label>
+        <input class="form-group__input" type="text" name="name" id="name" th:value="${product.productName}" placeholder="Nhập tên sản phẩm" required>
+      </div>
+
+      <div class="form-group">
+        <label for="image" class="form-group__label">Ảnh</label>
+        <input class="form-group__input" type="file" accept="image/*" name="image" id="image">
+        <img th:src="@{/img/categori/{image}(image=${product.image})}" alt="Product image" width="100">
+      </div>
+
+      <div class="form-group">
+        <label for="costPrice" class="form-group__label">Giá bán</label>
+        <input class="form-group__input" type="text" name="costPrice" id="costPrice" th:value="${product.costPrice}" placeholder="Nhập giá bán" required>
+      </div>
+
+      <div class="form-group">
+        <label for="originalPrice" class="form-group__label">Giá gốc</label>
+        <input class="form-group__input" type="text" name="originalPrice" id="originalPrice" th:value="${product.originalPrice}" placeholder="Nhập giá gốc" required>
+      </div>
+
+      <div class="form-group">
+        <label for="stock" class="form-group__label">Số lượng</label>
+        <input class="form-group__input" type="number" name="stock" id="stock" th:value="${product.stock}" placeholder="Nhập số lượng" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description" class="form-group__label">Mô tả</label>
+        <textarea class="form-group__input" name="description" id="description" placeholder="Nhập mô tả" required th:text="${product.description}"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="category" class="form-group__label">Danh mục</label>
+        <select id="category" class="form-group__input" name="category" required>
+          <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id == product.category.id}"></option>
+        </select>
+      </div>
+
+      <input type="submit" class="form-group__submit" value="Cập nhật">
+    </form>
+  </div>
+</section>
+
+<script src="/adminjs/main.js"></script>
+</body>
+</html>
