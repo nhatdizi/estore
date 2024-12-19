@@ -67,7 +67,12 @@ public class FavoriteDAO {
         } catch (Exception e) {
             return null;
         }
+    }
 
+    public int removeProduct(int productId, int accountId){
+        String sql = "delete from favorite where productId = ? and accountId = ?";
+        int result = jdbcTemplate.update(sql, productId, accountId);
+        return result;
     }
 
 }

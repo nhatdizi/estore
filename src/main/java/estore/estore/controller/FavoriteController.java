@@ -58,4 +58,19 @@ public class FavoriteController {
         return "product_list";
     }
 
+    @PostMapping("/favorite/remove/{id}")
+    public String removeProduct(@PathVariable("id") int productId,
+                                HttpSession session){
+        Account account = (Account) session.getAttribute("user");
+
+        if(account == null){
+            return "redirect:/login";
+        }
+        FavoriteDAO favoriteDAO = new FavoriteDAO(jdbcTemplate);
+
+        int result =  favoriteDAO.removeProduct(productId, account.getId());
+
+        return "redirect:/product-list";
+    }
+
 }

@@ -3669,7 +3669,7 @@ input:focus {
 /* line 192, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .header-right .favorit-items::before {
   position: absolute;
-  content: "02";
+  /*content: "02";*/
   width: 25px;
   height: 25px;
   background: #00b1ff;
@@ -3709,7 +3709,7 @@ input:focus {
 /* line 224, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .header-right .shopping-card::before {
   position: absolute;
-  content: "02";
+  /*content: "02";*/
   width: 25px;
   height: 25px;
   background: #00b1ff;
@@ -3868,6 +3868,7 @@ input:focus {
 /* line 368, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-area .flag {
   padding-top: 8px;
+  width: 40px;
 }
 
 /* line 373, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
@@ -9094,6 +9095,7 @@ input:focus {
 
 /* line 25, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_trending_items.scss */
 .single_product_item h3 {
+  text-align: center;
   font-size: 24px;
   font-weight: 400;
   margin-top: 22px;
@@ -9129,6 +9131,7 @@ input:focus {
 /* line 45, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_trending_items.scss */
 .single_product_item p {
   font-size: 20px;
+  text-align: center;
 }
 
 @media (max-width: 991px) {
@@ -13041,5 +13044,31 @@ input:focus {
 
     /* Đảm bảo chiều cao tự động để vừa với kích thước */
 }
+
+.single_product_item {
+    position: relative; /* Đảm bảo phần tử con có thể được định vị tuyệt đối */
+}
+
+.remove-btn {
+    width: 25px; /* Đặt kích thước chiều rộng */
+    height: 25px; /* Đặt kích thước chiều cao */
+    top: 10px; /* Cách viền trên 10px */
+    right: 10px; /* Cách viền phải 10px */
+    font-size: 16px; /* Kích thước dấu "X" */
+    padding: 0; /* Loại bỏ khoảng đệm */
+    line-height: 1; /* Căn chỉnh khoảng cách dấu "X" */
+    z-index: 10; /* Đảm bảo nút nằm trên các thành phần khác */
+    border: 1px solid #ccc; /* Viền xám */
+    background-color: #f9f9f9; /* Màu nền nhạt */
+    color: #333; /* Màu chữ (dấu X) */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    transition: background-color 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.remove-btn:hover {
+    background-color: #e6e6e6; /* Màu nền khi hover */
+    border-color: #999; /* Thay đổi viền khi hover */
+}
+
 
 /*# sourceMappingURL=style.css.map */

@@ -38,15 +38,19 @@
                         <div class="row">
                             <div class="col-lg-6 col-sm-6" th:each="product : ${productList}">
                                 <div class="single_product_item">
-                                    <img th:src="@{/img/categori/{image}(image=${product.image})}" alt="" class="img-fluid">
+                                    <form th:action="@{/favorite/remove/{id}(id=${product.id})}" method="post">
+                                        <button type="submit"
+                                                class="remove-btn position-absolute rounded-circle d-flex align-items-center justify-content-center">
+                                            &times;
+                                        </button>
+                                    </form>
+
+                                    <img th:src="@{/img/categori/{image}(image=${product.image})}" alt="" class="img-fluid1">
                                     <p th:text="${product.category.name}"></p>
                                     <h3> <a th:href="@{/single-product/{id}(id=${product.id})}" th:text="${product.productName}"></a> </h3>
                                     <p>$[[${product.costPrice}]]</p>
                                 </div>
                             </div>
-<!--                            <div class="load_more_btn text-center">-->
-<!--                                <a href="#" class="btn_3">Load More</a>-->
-<!--                            </div>-->
                         </div>
                     </div>
                 </div>

@@ -77,39 +77,4 @@ insert into account(id, user_name, password, email, roleId) values
 (1, 'nhat', '123456', 'nhat@gmail.com', 1),
 (2, 'the anh', '123456', 'theanh@gmail.com', 2),
 (3, 'quang', '123456', 'quang@gmail.com', 2);
- 
-
-select * from product;
-select * from role;
-select * from account;
-select * from cart where accountId = 3;
-delete from cart where accountId = 3;
-
-insert into cart(productId, accountId, stock) value (2, 2, 3);
-
-select * from cart;
-delete from cart where productId = 2 and accountId = 3;
-update cart
-set stock = 6 where productId = 2 and accountId = 2;
-
-SELECT a.id, a.user_name, a.password, a.roleId, r.position FROM account a JOIN role r ON a.roleId = r.id where a.user_name = "quang";
-select p.image, p.product_name, p.cost_price, c.stock from product p inner join cart c 
-on p.id = c.productId where c.accountId = 3; 
-
-insert into account(user_name, password, email, roleId) value ('chuyen', '12345678', 'chuyen@gmail.com', 2);
-
-select * from product where product_name like '%Green%';
-
-select p.image, p.product_name, p.cost_price, c.name from product p inner join favorite f 
-on p.id = f.productId
-inner join category c on p.categoryId = c.id where f.accountId = 3; 
-
-select * from product order by cost_price desc;
-
-select * from category;
-insert into category(name) value ('Quần jean');
-update category set name = "áo khoác" where id = 5;
-delete from category where id = 7;
-
-SELECT COUNT(*) FROM product WHERE categoryId = 1;
 
