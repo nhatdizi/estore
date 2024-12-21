@@ -41,8 +41,8 @@ git clone https://github.com/nhatdizi/estore.git
 ### Khách hàng:
 - Đăng nhập
 - Đăng ký
-- ̵Tìm kiếm sản phẩm.
-̵	Thêm sản phẩm vào giỏ hàng.
+- ̵Tìm kiếm sản phẩm
+̵	Thêm sản phẩm vào giỏ hàng
 ̵	Xem danh sách sản phẩm
 ̵	Xem thông tin giỏ hàng
 ̵	Cập nhật giỏ hàng
