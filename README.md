@@ -35,15 +35,15 @@ git clone https://github.com/nhatdizi/estore.git
 - Phân quyền: Admin và User.
 
 ### Admin:
-- ̵Quản lý sản phẩm.
-̵	Quản lý danh mục
+- Quản lý sản phẩm.
+- Quản lý danh mục
 
 ### Khách hàng:
 - Đăng nhập
 - Đăng ký
-- ̵Tìm kiếm sản phẩm
-̵	Thêm sản phẩm vào giỏ hàng
-̵	Xem danh sách sản phẩm
-̵	Xem thông tin giỏ hàng
-̵	Cập nhật giỏ hàng
-̵	Thêm sản phẩm vào danh sách yêu thích
+- Tìm kiếm sản phẩm
+- Thêm sản phẩm vào giỏ hàng
+- Xem danh sách sản phẩm
+- Xem thông tin giỏ hàng
+- Cập nhật giỏ hàng
+- Thêm sản phẩm vào danh sách yêu thích
